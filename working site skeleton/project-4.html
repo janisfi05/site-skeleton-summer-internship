@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Discord Insight Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #E2E8F0; }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+        #result-panel { transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="py-8">
+            <a href="projects.html" class="text-sky-400 hover:text-sky-300 transition-colors">&larr; Back to Project Demos</a>
+        </header>
+        <main>
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 gradient-text">Discord Insight Bot</h1>
+                <p class="text-lg text-slate-400">This demo simulates a bot that reads a conversation and extracts a summary and action items.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-[#36393f] rounded-xl p-6 flex flex-col">
+                    <h2 class="text-xl font-bold mb-4 text-white">#project-launch Channel</h2>
+                    <div class="space-y-4 flex-grow">
+                        <div class="flex items-start gap-3">
+                            <img src="https://cdn.discordapp.com/embed/avatars/0.png" class="w-10 h-10 rounded-full" alt="Avatar">
+                            <div>
+                                <p class="text-sm"><span class="font-semibold text-white">Alice</span> <span class="text-gray-400 text-xs">Today at 2:30 PM</span></p>
+                                <p class="text-gray-300">Okay team, final check on the v2 launch. Is the landing page copy finalized?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <img src="https://cdn.discordapp.com/embed/avatars/1.png" class="w-10 h-10 rounded-full" alt="Avatar">
+                            <div>
+                                <p class="text-sm"><span class="font-semibold text-white">Bob</span> <span class="text-gray-400 text-xs">Today at 2:31 PM</span></p>
+                                <p class="text-gray-300">Almost. I'm still waiting for the final stats from Carol's performance tests. She said she'd get them to me by EOD.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <img src="https://cdn.discordapp.com/embed/avatars/2.png" class="w-10 h-10 rounded-full" alt="Avatar">
+                            <div>
+                                <p class="text-sm"><span class="font-semibold text-white">Carol</span> <span class="text-gray-400 text-xs">Today at 2:33 PM</span></p>
+                                <p class="text-gray-300">Tests are done! We're seeing a 30% performance boost. I'm writing up the report now. Also, did we decide on the final pricing model? We need to update the page with that.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-3">
+                            <img src="https://cdn.discordapp.com/embed/avatars/0.png" class="w-10 h-10 rounded-full" alt="Avatar">
+                            <div>
+                                <p class="text-sm"><span class="font-semibold text-white">Alice</span> <span class="text-gray-400 text-xs">Today at 2:34 PM</span></p>
+                                <p class="text-gray-300">Great news! Let's go with the 'Pro' tier at $49/mo. Bob, please update the copy with the 30% stat and the new pricing once you have the official report from Carol.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="run-button" class="w-full mt-6 bg-sky-500 text-white font-bold py-3 px-5 rounded-lg hover:bg-sky-600 transition-colors disabled:bg-slate-600 disabled:cursor-wait">
+                        @InsightBot summarize this
+                    </button>
+                </div>
+                
+                <div id="result-panel" class="bg-slate-900/75 border border-slate-700 rounded-xl p-6 opacity-0 transform translate-y-5">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="https://cdn.discordapp.com/embed/avatars/4.png" class="w-10 h-10 rounded-full" alt="Avatar">
+                        <div>
+                            <p class="font-semibold text-white">InsightBot <span class="text-xs bg-indigo-500 text-white font-medium px-2 py-0.5 rounded-full">BOT</span></p>
+                            <p id="bot-status" class="text-sm text-yellow-400">Analyzing conversation...</p>
+                        </div>
+                    </div>
+                    <div id="bot-results" class="hidden">
+                        <h3 class="font-bold text-lg mb-2 text-white">Conversation Summary:</h3>
+                        <p class="text-slate-300 mb-6">The team is finalizing the v2 launch. The main blocker is the landing page copy, which needs updated performance stats and pricing. Carol has confirmed a 30% performance boost and Alice has decided on the $49/mo 'Pro' pricing tier.</p>
+                        <h3 class="font-bold text-lg mb-2 text-white">Action Items:</h3>
+                        <ul class="list-disc list-inside space-y-2 text-slate-300">
+                            <li><span class="font-semibold text-white">Carol:</span> Provide the final performance test report to Bob.</li>
+                            <li><span class="font-semibold text-white">Bob:</span> Update the landing page copy with the 30% performance stat and the new $49/mo pricing after receiving the report.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="text-center py-10 mt-16 border-t border-slate-800"><p>Built by Janis Fischer</p></footer>
+    </div>
+    <script src="project-4-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nate's Digital Hub | Project by [Your Name]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #E2E8F0; }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+        .stat-card { background-color: rgba(23, 23, 23, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .card-link { display: block; border-radius: 0.75rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-link:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(129, 140, 248, 0.3); }
+        .btn-glow:hover { box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        .section-glow { position: relative; overflow: hidden; }
+        .section-glow::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(129, 140, 248, 0.08) 0%, rgba(10, 10, 10, 0) 60%); animation: rotate 15s linear infinite; pointer-events: none; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes failsafe-float-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .logo { font-family: 'Chakra Petch', sans-serif; display: flex; justify-content: center; }
+        .logo > span { display: inline-block; opacity: 0; animation-name: failsafe-float-in; animation-duration: 0.6s; animation-fill-mode: forwards; animation-timing-function: ease-out; }
+        .logo > span:nth-child(1) { animation-delay: 0.1s; } .logo > span:nth-child(2) { animation-delay: 0.2s; } .logo > span:nth-child(3) { animation-delay: 0.3s; } .logo > span:nth-child(4) { animation-delay: 0.4s; } .logo > span:nth-child(5) { animation-delay: 0.5s; } .logo > span:nth-child(6) { animation-delay: 0.6s; } .logo > span:nth-child(7) { animation-delay: 0.7s; } .logo > span:nth-child(8) { animation-delay: 0.8s; } .logo > span:nth-child(9) { animation-delay: 0.9s; } .logo > span:nth-child(10) { animation-delay: 1.0s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center py-12 md:py-20 border-b border-slate-800 section-glow">
+            <div class="logo text-4xl mb-8 gradient-text" aria-label="Nate B Jones">
+                <span>N</span><span>a</span><span>t</span><span>e</span><span style="margin: 0 0.25rem;">B</span><span>J</span><span>o</span><span>n</span><span>e</span><span>s</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">A Digital Hub for Nate</h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">A working site skeleton built for the <span class="gradient-text font-semibold">Cracked-Vibe Coding Intern</span> role. This is my Day-One brief submission, designed to organize, automate, and scale.</p>
+            <div class="mt-8"><a href="#brief" class="bg-sky-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 btn-glow">View Day-One Brief</a></div>
+        </header>
+
+        <main class="py-12 md:py-16">
+            <section id="substack" class="mb-20">
+                <h2 class="text-3xl font-bold tracking-tight mb-8 text-center">Flagship Substack Essays</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="essay-1.html" class="card-link">
+                        <div class="stat-card p-6 h-full">
+                            <h3 class="font-bold text-xl mb-2">The Future of Agentic Workflows</h3>
+                            <p class="text-slate-400 mb-4 text-sm">A deep dive into how autonomous AI agents are reshaping the modern knowledge worker's tech stack.</p>
+                            <p class="font-semibold text-sky-400">Read More &rarr;</p>
+                        </div>
+                    </a>
+                    <a href="essay-2.html" class="card-link">
+                        <div class="stat-card p-6 h-full">
+                            <h3 class="font-bold text-xl mb-2">Why Your Next Hire Might Be an LLM</h3>
+                            <p class="text-slate-400 mb-4 text-sm">Exploring the ROI of fine-tuned models for specialized tasks and when to choose them over human experts.</p>
+                            <p class="font-semibold text-sky-400">Read More &rarr;</p>
+                        </div>
+                    </a>
+                    <a href="essay-3.html" class="card-link">
+                        <div class="stat-card p-6 h-full">
+                            <h3 class="font-bold text-xl mb-2">The AI Content Supply Chain</h3>
+                            <p class="text-slate-400 mb-4 text-sm">From raw ideas to multi-platform distribution, how AI can 10x content output without sacrificing quality.</p>
+                            <p class="font-semibold text-sky-400">Read More &rarr;</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section id="services" class="mb-20">
+                <h2 class="text-3xl font-bold tracking-tight mb-8 text-center">Other Ventures & Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <a href="consulting.html" class="card-link">
+                        <div class="stat-card p-6 h-full">
+                            <h3 class="font-bold text-xl mb-2 gradient-text">AI Strategy Consulting</h3>
+                            <p class="text-slate-400">Advisory services for startups and enterprises looking to integrate cutting-edge AI into their core products.</p>
+                            <p class="mt-4 inline-block font-semibold text-sky-400">Learn More &rarr;</p>
+                        </div>
+                    </a>
+                    <a href="projects.html" class="card-link">
+                        <div class="stat-card p-6 h-full">
+                            <h3 class="font-bold text-xl mb-2 gradient-text">Live Project Demos</h3>
+                            <p class="text-slate-400">A curated list of active AI experiments, automations, and tools being built in public.</p>
+                            <p class="mt-4 inline-block font-semibold text-sky-400">See Projects &rarr;</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section id="brief" class="section-glow border border-slate-800 rounded-2xl p-6 md:p-10">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-center">Day-One Brief: Automation Ideas</h2>
+                <p class="text-slate-400 mb-10 text-center max-w-2xl mx-auto">Two automation ideas designed to save ≥2 hours/week, complete with proposed stacks.</p>
+                
+                <div class="space-y-12">
+                    <div class="md:grid md:grid-cols-3 md:gap-8 items-start">
+                        <div class="md:col-span-1 mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold gradient-text">1. The "Signal from Noise" Pipeline</h3>
+                            <p class="text-slate-400 mt-1">Automated AI news briefing and content ideation.</p>
+                            <p class="font-mono text-sm mt-3 text-cyan-400 bg-slate-800/50 rounded px-2 py-1 inline-block">Est. Time Saved: 3-4 h/week</p>
+                        </div>
+                        <div class="md:col-span-2 stat-card rounded-xl p-6">
+                            <h4 class="font-semibold text-lg mb-2">Description:</h4>
+                            <p class="text-slate-300 mb-4">This workflow constantly scans a curated list of sources (Twitter lists, RSS feeds, specific subreddits, Discord channels) for keywords related to AI breakthroughs. It uses an LLM to summarize the key findings, filter out marketing fluff, and identify the "so what?" for a non-technical audience. The output is a daily ranked list of 3-5 story seeds, delivered to a Notion database, complete with summaries, source links, and a generated "hot take" angle.</p>
+                            <h4 class="font-semibold text-lg mt-6 mb-2">Proposed Stack:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">n8n.io (or Pipedream)</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Claude 3.5 Sonnet API</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Notion API</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Discord Webhook</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-3 md:gap-8 items-start">
+                        <div class="md:col-span-1 mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold gradient-text">2. Dynamic Landing Page Generator</h3>
+                            <p class="text-slate-400 mt-1">Personalized landing pages from a single template.</p>
+                            <p class="font-mono text-sm mt-3 text-cyan-400 bg-slate-800/50 rounded px-2 py-1 inline-block">Est. Time Saved: 2-3 h/week</p>
+                        </div>
+                        <div class="md:col-span-2 stat-card rounded-xl p-6">
+                            <h4 class="font-semibold text-lg mb-2">Description:</h4>
+                            <p class="text-slate-300 mb-4">An automation that takes a simple input (e.g., a new Substack post URL or a consulting client's name) and dynamically generates a unique, shareable landing page. For a Substack post, it would pull the title, summary, and hero image. For a client, it could populate a page with their logo and a tailored value proposition. This eliminates the manual work of duplicating and editing pages in a CMS for every new campaign or contact.</p>
+                            <h4 class="font-semibold text-lg mt-6 mb-2">Proposed Stack:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Vercel</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Next.js (or Astro)</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">Airtable (as a CMS)</span>
+                                <span class="bg-gray-700 text-gray-200 text-xs font-medium px-2.5 py-1 rounded-full">n8n Trigger</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-10 border-t border-slate-800">
+            <p class="text-slate-400">Built by Janis Fischer for Nate's Summer Internship Application.</p>
+            <p class="text-slate-500 text-sm mt-2">June 24, 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

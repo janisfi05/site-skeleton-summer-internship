@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Signal from Noise Pipeline</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #E2E8F0; }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+        .log-line {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: float-in 0.5s ease forwards;
+        }
+        @keyframes float-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="py-8">
+            <a href="projects.html" class="text-sky-400 hover:text-sky-300 transition-colors">&larr; Back to Project Demos</a>
+        </header>
+        <main>
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 gradient-text">Signal from Noise Pipeline</h1>
+                <p class="text-lg text-slate-400">This interactive demo simulates an n8n workflow that finds and summarizes the most important AI news.</p>
+            </div>
+
+            <div class="bg-slate-900/75 border border-slate-700 rounded-xl p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-white">Control Panel</h2>
+                    <button id="run-button" class="bg-sky-500 text-white font-bold py-2 px-5 rounded-lg hover:bg-sky-600 transition-colors disabled:bg-slate-600 disabled:cursor-wait">
+                        Run Workflow
+                    </button>
+                </div>
+                <hr class="border-slate-700 my-6">
+
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-300 mb-2">Log Output</h3>
+                        <div id="log-output" class="font-mono text-sm text-slate-400 bg-black rounded-lg p-4 h-48 overflow-y-auto space-y-2">
+                            <p>&gt; Workflow standing by. Press "Run Workflow" to begin.</p>
+                        </div>
+                    </div>
+
+                    <div id="result-section" class="hidden">
+                        <h3 class="text-lg font-semibold text-slate-300 mb-2">Result: Pushed to Notion</h3>
+                        <div class="bg-white text-slate-800 rounded-lg p-6 border-4 border-slate-300">
+                            <h4 class="text-xl font-bold mb-4">Daily AI Briefing: June 24, 2025</h4>
+                            
+                            <div class="border-l-4 border-yellow-500 pl-4 py-2 mb-6 bg-yellow-50 rounded">
+                                <p class="font-bold">1. Anthropic releases Claude 3.5 Sonnet</p>
+                                <p class="text-sm">Summary: Model is 2x faster than Opus, sets new benchmarks in vision and coding, and features a new "Artifacts" UI for better human-computer interaction. The speed and cost improvements make it a serious GPT-4o competitor for enterprise applications.</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4 py-2 mb-6 bg-blue-50 rounded">
+                                <p class="font-bold">2. Pika Labs demonstrates new lip-syncing model</p>
+                                <p class="text-sm">Summary: Pika's latest video generation model shows highly realistic, audio-driven lip-syncing capabilities, a major step forward for generative video and a potential disruptor for traditional animation and dubbing workflows.</p>
+                            </div>
+                             <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 rounded">
+                                <p class="font-bold">3. Stanford study on LLM energy consumption</p>
+                                <p class="text-sm">Summary: A new paper reveals that training a single flagship LLM can consume as much electricity as a small city for a month, raising significant environmental and scalability concerns for the future of AI development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="text-center py-10 mt-16 border-t border-slate-800">
+            <p class="text-slate-400">Built by Janis Fischer</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('run-button').addEventListener('click', function() {
+            const button = this;
+            const logOutput = document.getElementById('log-output');
+            const resultSection = document.getElementById('result-section');
+            
+            button.disabled = true;
+            button.textContent = 'Running...';
+            logOutput.innerHTML = '';
+            resultSection.classList.add('hidden');
+
+            const logs = [
+                { text: '> Initializing workflow...', delay: 0 },
+                { text: '> Fetching from 12 RSS Feeds...', delay: 1000 },
+                { text: '> Scanning 3 Twitter Lists...', delay: 1500 },
+                { text: '> Found 47 potential articles and posts.', delay: 2500 },
+                { text: '> Filtering out duplicates and low-signal content...', delay: 3200 },
+                { text: '> Found 8 relevant items. Sending to Claude 3.5 for analysis...', delay: 4000 },
+                { text: '> AI analysis complete. Identifying top 3 stories...', delay: 6000 },
+                { text: '> Generating hot takes and summaries...', delay: 6800 },
+                { text: '> Pushing 3 story seeds to Notion database...', delay: 7500 },
+                { text: '<span class="text-green-400">> Workflow complete.</span>', delay: 8000 }
+            ];
+
+            logs.forEach(log => {
+                setTimeout(() => {
+                    const p = document.createElement('p');
+                    p.innerHTML = log.text;
+                    p.classList.add('log-line');
+                    logOutput.appendChild(p);
+                    logOutput.scrollTop = logOutput.scrollHeight; // Auto-scroll
+                }, log.delay);
+            });
+
+            setTimeout(() => {
+                resultSection.classList.remove('hidden');
+                button.disabled = false;
+                button.textContent = 'Run Workflow';
+            }, 8500);
+        });
+    </script>
+</body>
+</html>

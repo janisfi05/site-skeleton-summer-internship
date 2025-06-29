@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Multimodal Content Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #E2E8F0; }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+        .tab-button { transition: all 0.2s ease-in-out; }
+        .tab-button.active { background-color: #38bdf8; color: white; }
+        .tab-button:not(.active) { background-color: #1e293b; color: #94a3b8; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        @keyframes float-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .log-line { opacity: 0; transform: translateY(10px); animation: float-in 0.5s ease forwards; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="py-8">
+            <a href="projects.html" class="text-sky-400 hover:text-sky-300 transition-colors">&larr; Back to Project Demos</a>
+        </header>
+        <main>
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 gradient-text">Multimodal Content Engine</h1>
+                <p class="text-lg text-slate-400">This demo simulates repurposing a single video into multiple content formats using AI.</p>
+            </div>
+
+            <div class="bg-slate-900/75 border border-slate-700 rounded-xl p-6">
+                <div class="mb-4">
+                    <label for="video-url" class="block mb-2 text-sm font-medium text-slate-300">Source Video URL</label>
+                    <input type="text" id="video-url" class="bg-slate-800 border border-slate-600 text-slate-400 text-sm rounded-lg block w-full p-2.5" value="https://www.youtube.com/watch?v=sN5g-H9-Tps" readonly>
+                </div>
+                <button id="run-button" class="w-full bg-sky-500 text-white font-bold py-3 px-5 rounded-lg hover:bg-sky-600 transition-colors disabled:bg-slate-600 disabled:cursor-wait">
+                    Start Repurposing
+                </button>
+                
+                <div id="log-section" class="my-6 hidden">
+                    <h3 class="text-lg font-semibold text-slate-300 mb-2">Processing Log</h3>
+                    <div id="log-output" class="font-mono text-sm text-slate-400 bg-black rounded-lg p-4 h-32 overflow-y-auto space-y-2"></div>
+                </div>
+
+                <div id="result-section" class="hidden">
+                    <h3 class="text-lg font-semibold text-slate-300 mb-4">Generated Assets</h3>
+                    <div class="flex border-b border-slate-700 mb-4" id="tab-buttons">
+                        <button class="tab-button active py-2 px-4 rounded-t-lg" data-tab="blog">Blog Post</button>
+                        <button class="tab-button py-2 px-4 rounded-t-lg" data-tab="thread">Social Thread</button>
+                        <button class="tab-button py-2 px-4 rounded-t-lg" data-tab="clips">Video Clips</button>
+                    </div>
+
+                    <div id="tab-contents">
+                        <div id="tab-blog" class="tab-content active prose prose-invert max-w-none prose-sm">
+                            <h2>Key Insights from "The Future of AI"</h2>
+                            <p>A recent discussion with industry experts highlighted several key trends shaping the next wave of artificial intelligence. The primary takeaway is the shift from monolithic models to a constellation of smaller, specialized "agentic" systems...</p>
+                            <h4>Top 3 Takeaways:</h4>
+                            <ol>
+                                <li><strong>Specialization over Generalization:</strong> The future isn't one giant AI, but thousands of AIs that excel at specific tasks.</li>
+                                <li><strong>The Rise of Orchestration:</strong> The most valuable skill will be the ability to weave these specialized agents together into powerful workflows.</li>
+                                <li><strong>Human-in-the-Loop is a Feature:</strong> True power comes from systems designed for human-AI collaboration, not full automation.</li>
+                            </ol>
+                        </div>
+                        <div id="tab-thread" class="tab-content space-y-3 prose prose-invert max-w-none prose-sm">
+                            <div class="border border-slate-700 rounded-lg p-3">1/5 Just watched a great talk on the future of AI. The biggest takeaway? Stop thinking about a single, all-powerful AI. The future is a swarm of specialized agents. 🤖</div>
+                            <div class="border border-slate-700 rounded-lg p-3">2/5 Think of it like a company. You don't hire one person to do marketing, finance, AND engineering. You hire specialists. The same is happening with AI.</div>
+                            <div class="border border-slate-700 rounded-lg p-3">3/5 The real magic isn't the agents themselves, but the "orchestration layer" that makes them work together. This is where the value is.</div>
+                            <div class="border border-slate-700 rounded-lg p-3">4/5 Example: An "email agent" hands off a task to a "research agent" which then passes its findings to a "summary agent." Seamless.</div>
+                            <div class="border border-slate-700 rounded-lg p-3">5/5 This means the most important skill in the next 5 years won't be prompt engineering, but "workflow engineering." Build the right team of AI agents, win the game. #AI #FutureOfWork</div>
+                        </div>
+                        <div id="tab-clips" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border border-slate-700 rounded-lg p-3">
+                                <p class="font-semibold text-white">Clip 1: The Core Thesis (0m 32s)</p>
+                                <p class="text-slate-400">A 30-second vertical clip explaining the shift from monolithic to specialized AI agents.</p>
+                            </div>
+                            <div class="border border-slate-700 rounded-lg p-3">
+                                <p class="font-semibold text-white">Clip 2: The Company Analogy (1m 15s)</p>
+                                <p class="text-slate-400">A 45-second clip where the speaker compares building AI systems to hiring a team of specialists.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="text-center py-10 mt-16 border-t border-slate-800"><p>Built by Janis Fischer</p></footer>
+    </div>
+    <script src="project-3-script.js"></script>
+</body>
+</html>

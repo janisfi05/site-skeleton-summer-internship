@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Dynamic Landing Page Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #E2E8F0; }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; }
+        #preview-content { transition: opacity 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="py-8">
+            <a href="projects.html" class="text-sky-400 hover:text-sky-300 transition-colors">&larr; Back to Project Demos</a>
+        </header>
+        <main>
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-2 gradient-text">Dynamic Landing Page Generator</h1>
+                <p class="text-lg text-slate-400">This demo simulates creating a landing page from a data source, like an Airtable record.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-slate-900/75 border border-slate-700 rounded-xl p-6 h-fit">
+                    <h2 class="text-2xl font-bold text-white">Control Panel</h2>
+                    <hr class="border-slate-700 my-4">
+                    <div>
+                        <label for="data-source" class="block mb-2 text-sm font-medium text-slate-300">Data Source (Simulated Airtable Record URL)</label>
+                        <input type="text" id="data-source" class="bg-slate-800 border border-slate-600 text-slate-300 text-sm rounded-lg focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5" value="https://airtable.com/recXXXXXXXXXXXXXX" readonly>
+                    </div>
+                    <div class="my-4">
+                        <label class="block mb-2 text-sm font-medium text-slate-300">Content Type</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center"><input type="radio" name="content-type" value="substack" class="w-4 h-4 text-sky-600 bg-gray-700 border-gray-600" checked>&nbsp;Substack Post</label>
+                            <label class="flex items-center"><input type="radio" name="content-type" value="client" class="w-4 h-4 text-sky-600 bg-gray-700 border-gray-600">&nbsp;Consulting Client</label>
+                        </div>
+                    </div>
+                    <button id="generate-button" class="w-full bg-sky-500 text-white font-bold py-3 px-5 rounded-lg hover:bg-sky-600 transition-colors disabled:bg-slate-600 disabled:cursor-wait">
+                        Generate Page
+                    </button>
+                </div>
+
+                <div class="bg-slate-900/75 border border-slate-700 rounded-xl">
+                    <div class="p-4 border-b border-slate-700">
+                        <p class="text-sm text-slate-400">Live Preview:</p>
+                        <p id="preview-url" class="font-mono text-sm text-green-400 truncate">https://nate.dev/lp/...</p>
+                    </div>
+                    <div id="preview-content" class="p-6 min-h-[400px] flex items-center justify-center">
+                        <p class="text-slate-500">Click "Generate Page" to see the preview</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="text-center py-10 mt-16 border-t border-slate-800">
+            <p class="text-slate-400">Built by Janis Fischer</p>
+        </footer>
+    </div>
+
+    <script>
+        const generateButton = document.getElementById('generate-button');
+        const previewContent = document.getElementById('preview-content');
+        const previewUrl = document.getElementById('preview-url');
+
+        const contentData = {
+            substack: {
+                title: "The Future of Agentic Workflows",
+                summary: "A deep dive into how autonomous AI agents are reshaping the modern knowledge worker's tech stack. This generated page proves you don't need a CMS to publish on the fly.",
+                imageUrl: "https://images.unsplash.com/photo-1678483749039-689539433d59?q=80&w=2070&auto=format&fit=crop",
+                cta: "Read the Full Post on Substack",
+                slug: "agentic-workflows-deep-dive"
+            },
+            client: {
+                title: "A Custom AI Strategy for InnovateCorp",
+                summary: "Nate is developing a bespoke agentic workflow for InnovateCorp to automate their entire Q3 market research process, projecting a 40% reduction in manual work.",
+                imageUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop",
+                cta: "Learn More About Consulting",
+                slug: "innovatecorp-case-study"
+            }
+        };
+
+        generateButton.addEventListener('click', () => {
+            const contentType = document.querySelector('input[name="content-type"]:checked').value;
+            const data = contentData[contentType];
+
+            generateButton.disabled = true;
+            generateButton.textContent = 'Generating...';
+            previewContent.style.opacity = '0';
+            previewUrl.textContent = '...';
+
+            setTimeout(() => {
+                const landingPageHTML = `
+                    <div class="text-center">
+                        <img src="${data.imageUrl}" alt="Hero Image" class="w-full h-48 object-cover rounded-lg mb-6">
+                        <h1 class="text-3xl font-bold text-white mb-4">${data.title}</h1>
+                        <p class="text-slate-300 mb-8">${data.summary}</p>
+                        <a href="#" class="inline-block bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-600 transition-colors">${data.cta}</a>
+                    </div>
+                `;
+                
+                previewContent.innerHTML = landingPageHTML;
+                previewUrl.textContent = `https://nate.dev/lp/${data.slug}`;
+                previewContent.style.opacity = '1';
+                generateButton.disabled = false;
+                generateButton.textContent = 'Generate Page';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
